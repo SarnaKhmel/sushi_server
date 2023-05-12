@@ -18,3 +18,10 @@ export const postCreateValidation = [
   body("tags", "bad tag").optional().isString(),
   body("imageUrl", "bad image url ").optional().isString(),
 ];
+
+export const productCreateValidation = [
+  body("title", "bad title").isLength({ min: 3 }).isString(),
+  body("text", "bad text").isLength({ min: 3 }).isString(),
+  body("tags", "bad tag").optional().isString(),
+  body("imageUrl", "bad image url ").optional().isString(),
+];
