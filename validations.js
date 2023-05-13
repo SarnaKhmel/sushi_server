@@ -28,3 +28,15 @@ export const productCreateValidation = [
   body("old_price", "bad old_price").optional().isLength({ min: 1 }).isString(),
   body("imageUrl", "bad image url ").optional().isString(),
 ];
+
+export const ordersCreateValidation = [
+  body("userName", "bad userName").isLength({ min: 3 }).isString(),
+  body("userPhone", "bad userPhone").isLength({ min: 3 }).isString(),
+  body("userEmail", "bad userEmail").isLength({ min: 3 }).isString(),
+  body("userAddress", "bad userAddress").isObject(),
+
+  body("orderPrice", "bad orderPrice").isString(),
+  body("orderWeight", "bad orderWeight").isString(),
+  body("orderList", "bad orderList").isArray(),
+  body("orderPromo", "bad orderPromo").optional().isString(),
+];
