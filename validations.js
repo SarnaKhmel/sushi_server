@@ -20,28 +20,11 @@ export const postCreateValidation = [
 
 export const productCreateValidation = [
   body("name", "bad name").isLength({ min: 3 }).isString(),
-  body("text", "bad name").isLength({ min: 3 }).isString(),
-  body("weight", "bad name").isString(),
-  body("sale", "bad name").isBoolean(),
-  body("price", "bad name").isString(),
-  body("week_sale", "bad week_sale").isBoolean(),
-  body("old_price", "bad name").optional().isLength({ min: 1 }).isString(),
+  body("text", "bad text").isLength({ min: 3 }).isString(),
+  body("weight", "bad weight").isString(),
+  body("sale", "bad sale").isBoolean(),
+  body("price", "bad price").isString(),
+  body("week_sale", "bad week_sale").optional().isString(),
+  body("old_price", "bad old_price").optional().isLength({ min: 1 }).isString(),
   body("imageUrl", "bad image url ").optional().isString(),
 ];
-
-// name
-// text
-// type
-
-// sale
-// weight
-// price
-// week_sale
-
-// old_price
-// viewsCount
-
-// imageUrl
-// user
-// createdAt
-// updatedAt

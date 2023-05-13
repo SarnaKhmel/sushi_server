@@ -4,25 +4,21 @@ const ProductSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
     },
     text: {
       type: String,
-      required: true,
     },
     weight: {
-      type: Boolean,
-      required: true,
+      type: String,
     },
     sale: {
       type: String,
     },
     price: {
       type: String,
-      required: true,
     },
     week_sale: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     old_price: {

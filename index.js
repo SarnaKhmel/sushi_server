@@ -6,9 +6,14 @@ import {
   registerValidation,
   loginValidation,
   postCreateValidation,
+  productCreateValidation,
 } from "./validations.js";
 import { checkAuth, handleValidationErrors } from "./utils/index.js";
-import { UserController, PostController } from "./controllers/index.js";
+import {
+  UserController,
+  PostController,
+  ProductController,
+} from "./controllers/index.js";
 
 mongoose
   .connect(
@@ -24,17 +29,26 @@ mongoose
 const app = express();
 const port = process.env.PORT || 1234;
 
-const storage = multer.diskStorage({
+const postStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads");
+    cb(null, "uploads/posts");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   },
 });
 
-const upload = multer({ storage });
+const productStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/products");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
 
+const uploadPost = multer({ storage: postStorage });
+const uploadProduct = multer({ storage: productStorage });
 app.use(express.json());
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
@@ -55,10 +69,41 @@ app.post(
 );
 app.get("/auth/me", checkAuth, UserController.getMe);
 
+//Product
+
+app.post(
+  "/upload/products",
+  checkAuth,
+  uploadPost.single("image"),
+  (req, res) => {
+    res.json({
+      url: `/uploads/products/${req.file.originalname}`,
+    });
+  }
+);
+
+app.get("/products", ProductController.getAll);
+app.get("/products/:id", ProductController.getOne);
+app.post(
+  "/auth/products",
+  checkAuth,
+  productCreateValidation,
+  handleValidationErrors,
+  ProductController.create
+);
+app.delete("/auth/products/:id", checkAuth, ProductController.remove);
+app.patch(
+  "/auth/products/:id",
+  checkAuth,
+  productCreateValidation,
+  handleValidationErrors,
+  ProductController.update
+);
+
 //Post
-app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
+app.post("/upload/post", checkAuth, uploadPost.single("image"), (req, res) => {
   res.json({
-    url: `/uploads/${req.file.originalname}`,
+    url: `/uploads/posts/${req.file.originalname}`,
   });
 });
 
