@@ -34,6 +34,10 @@ const OrderSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    orderStatus: {
+      type: String,
+      default: false,
+    },
     viewsCount: {
       type: Number,
       required: true,

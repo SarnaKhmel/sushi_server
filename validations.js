@@ -39,4 +39,5 @@ export const ordersCreateValidation = [
   body("orderWeight", "bad orderWeight").isString(),
   body("orderList", "bad orderList").isArray(),
   body("orderPromo", "bad orderPromo").optional().isString(),
+  body("orderStatus", "bad orderStatus").optional().isString(),
 ];
