@@ -33,11 +33,11 @@ export const ordersCreateValidation = [
   body("userName", "bad userName").isLength({ min: 3 }).isString(),
   body("userPhone", "bad userPhone").isLength({ min: 3 }).isString(),
   body("userEmail", "bad userEmail").isLength({ min: 3 }).isString(),
-  body("userAddress", "bad userAddress").isObject(),
+  body("userAddress", "bad userAddress").isString(),
 
   body("orderPrice", "bad orderPrice").isString(),
   body("orderWeight", "bad orderWeight").isString(),
-  body("orderList", "bad orderList").isArray(),
+  body("orderList", "bad orderList").isString(),
   body("orderPromo", "bad orderPromo").optional().isString(),
   body("orderStatus", "bad orderStatus").optional().isString(),
 ];

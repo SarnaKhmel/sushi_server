@@ -7,12 +7,14 @@ import {
   loginValidation,
   postCreateValidation,
   productCreateValidation,
+  ordersCreateValidation,
 } from "./validations.js";
 import { checkAuth, handleValidationErrors } from "./utils/index.js";
 import {
   UserController,
   PostController,
   ProductController,
+  OrderController,
 } from "./controllers/index.js";
 
 mongoose
@@ -69,8 +71,33 @@ app.post(
 );
 app.get("/auth/me", checkAuth, UserController.getMe);
 
-//Product
+//Order
 
+// app.post("/upload/order", checkAuth, uploadPost.single("image"), (req, res) => {
+//   res.json({
+//     url: `/uploads/order/${req.file.originalname}`,
+//   });
+// });
+
+app.get("/order", OrderController.getAll);
+app.get("/order/:id", OrderController.getOne);
+app.post(
+  "/order",
+  checkAuth,
+  ordersCreateValidation,
+  handleValidationErrors,
+  OrderController.create
+);
+app.delete("/order/:id", checkAuth, OrderController.remove);
+app.patch(
+  "/order/:id",
+  checkAuth,
+  ordersCreateValidation,
+  handleValidationErrors,
+  OrderController.update
+);
+
+//Product
 app.post(
   "/upload/products",
   checkAuth,
@@ -87,7 +114,7 @@ app.get("/products/:id", ProductController.getOne);
 app.post(
   "/auth/products",
   checkAuth,
-  productCreateValidation,
+  ordersCreateValidation,
   handleValidationErrors,
   ProductController.create
 );
