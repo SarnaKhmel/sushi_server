@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const ProductSchema = new mongoose.Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
     },
@@ -10,10 +10,23 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    tags: {
+    weight: {
+      type: Boolean,
+      required: true,
+    },
+    sale: {
       type: String,
-      default: [],
-      required: false,
+    },
+    price: {
+      type: String,
+      required: true,
+    },
+    week_sale: {
+      type: Boolean,
+      default: false,
+    },
+    old_price: {
+      type: String,
     },
     viewsCount: {
       type: Number,

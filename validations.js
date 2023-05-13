@@ -24,7 +24,7 @@ export const productCreateValidation = [
   body("weight", "bad name").isString(),
   body("sale", "bad name").isBoolean(),
   body("price", "bad name").isString(),
-  body("week_sale", "bad name").isBoolean(),
+  body("week_sale", "bad week_sale").isBoolean(),
   body("old_price", "bad name").optional().isLength({ min: 1 }).isString(),
   body("imageUrl", "bad image url ").optional().isString(),
 ];
