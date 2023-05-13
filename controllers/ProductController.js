@@ -49,10 +49,14 @@ export const getOne = async (req, res) => {
 export const create = async (req, res) => {
   try {
     const doc = new ProductModel({
-      title: req.body.title,
+      name: req.body.name,
       text: req.body.text,
+      weight: req.body.weight,
+      sale: req.body.sale,
+      price: req.body.price,
+      week_sale: req.body.week_sale,
+      old_price: req.body.old_price,
       imageUrl: req.body.imageUrl,
-      tags: req.body.tags,
       user: req.userId,
     });
 
@@ -99,10 +103,14 @@ export const update = async (req, res) => {
         _id: ProductId,
       },
       {
-        title: req.body.title,
+        name: req.body.name,
         text: req.body.text,
+        weight: req.body.weight,
+        sale: req.body.sale,
+        price: req.body.price,
+        week_sale: req.body.week_sale,
+        old_price: req.body.old_price,
         imageUrl: req.body.imageUrl,
-        tags: req.body.tags,
         user: req.userId,
       }
     );
