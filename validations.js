@@ -15,13 +15,33 @@ export const loginValidation = [
 export const postCreateValidation = [
   body("title", "bad title").isLength({ min: 3 }).isString(),
   body("text", "bad text").isLength({ min: 3 }).isString(),
-  body("tags", "bad tag").optional().isString(),
   body("imageUrl", "bad image url ").optional().isString(),
 ];
 
 export const productCreateValidation = [
-  body("title", "bad title").isLength({ min: 3 }).isString(),
-  body("text", "bad text").isLength({ min: 3 }).isString(),
-  body("tags", "bad tag").optional().isString(),
+  body("name", "bad name").isLength({ min: 3 }).isString(),
+  body("text", "bad name").isLength({ min: 3 }).isString(),
+  body("weight", "bad name").isString(),
+  body("sale", "bad name").isBoolean(),
+  body("price", "bad name").isString(),
+  body("week_sale", "bad name").isBoolean(),
+  body("old_price", "bad name").optional().isLength({ min: 1 }).isString(),
   body("imageUrl", "bad image url ").optional().isString(),
 ];
+
+// name
+// text
+// type
+
+// sale
+// weight
+// price
+// week_sale
+
+// old_price
+// viewsCount
+
+// imageUrl
+// user
+// createdAt
+// updatedAt
